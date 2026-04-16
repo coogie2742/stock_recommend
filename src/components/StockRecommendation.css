@@ -100,6 +100,30 @@
   flex-grow: 1; /* Allows description to take up available space */
 }
 
+/* Simulated Return Styling */
+.simulated-return {
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-top: auto; /* Push to bottom */
+  padding-top: 1rem;
+  border-top: 1px dashed var(--tooldi-border);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.simulated-return strong {
+  font-size: 1.2em; /* Make percentage stand out */
+}
+
+.simulated-return.positive {
+  color: #28a745; /* Green for positive */
+}
+
+.simulated-return.negative {
+  color: #dc3545; /* Red for negative */
+}
+
+
 .stock-card a {
   display: inline-block;
   background-color: var(--tooldi-secondary);
@@ -111,6 +135,7 @@
   font-size: 0.95em;
   transition: background-color 0.2s ease;
   align-self: flex-start; /* Align link to the start of the card */
+  margin-top: 1.2rem; /* Add some space above the link */
 }
 
 .stock-card a:hover {
@@ -168,6 +193,9 @@
     padding: 0.7rem 1rem;
     font-size: 0.9em;
   }
+  .simulated-return {
+    font-size: 1em;
+  }
 }
 
 @media (max-width: 480px) {
@@ -192,5 +220,8 @@
   }
   .stock-card h3 {
     font-size: 1.1em;
+  }
+  .simulated-return {
+    font-size: 0.9em;
   }
 }

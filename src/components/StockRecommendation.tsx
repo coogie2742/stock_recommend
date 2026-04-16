@@ -11,7 +11,44 @@ interface Stock {
   name: string;
   code: string;
   description: string;
+  simulatedReturn?: string; // Add simulatedReturn property
 }
+
+// Function to simulate returns based on tendency and period
+const simulateReturn = (tendency: string, period: string): string => {
+  let min = 0;
+  let max = 0;
+
+  if (tendency === '공격성향') {
+    if (period === '일주일 이내') { // High volatility, short term
+      min = -15; max = 20; // High potential loss/gain
+    } else if (period === '3개월') { // Moderate volatility, mid term
+      min = -10; max = 30;
+    } else if (period === '1년') { // High growth potential, long term
+      min = -5; max = 50;
+    }
+  } else if (tendency === '중도') {
+    if (period === '일주일 이내') { // Moderate volatility, short term
+      min = -5; max = 10;
+    } else if (period === '3개월') { // Moderate growth, mid term
+      min = 0; max = 20;
+    } else if (period === '1년') { // Steady growth, long term
+      min = 5; max = 35;
+    }
+  } else if (tendency === '안정성향') {
+    if (period === '일주일 이내') { // Low volatility, short term
+      min = -2; max = 3;
+    } else if (period === '3개월') { // Stable growth, mid term
+      min = 0; max = 8;
+    } else if (period === '1년') { // Consistent, modest growth, long term
+      min = 5; max = 15;
+    }
+  }
+
+  const randomReturn = Math.random() * (max - min) + min;
+  return `${randomReturn > 0 ? '+' : ''}${randomReturn.toFixed(2)}%`;
+};
+
 
 const StockRecommendation: React.FC = () => {
   const location = useLocation();
@@ -100,7 +137,7 @@ const StockRecommendation: React.FC = () => {
             { name: '신한지주', code: '055550', description: '안정적인 금융 지주사로서 꾸준한 실적 성장과 적극적인 주주 환원 정책을 통해 중기적인 투자 매력이 높습니다.' },
             { name: '하나금융지주', code: '086790', description: '금리 인상 수혜와 견고한 실적을 바탕으로 중기적인 배당 수익과 함께 주가 상승을 노릴 수 있습니다.' },
             { name: '우리금융지주', code: '316140', description: '은행 중심의 안정적인 실적과 비은행 부문 강화 노력을 통해 중기적인 기업 가치 성장이 기대됩니다.' },
-            { name: '삼성화재', code: '000810', description: '손해보험 업계 선두주자로서 견고한 실적과 안정적인 배당을 제공하며, 중기적인 관점에서 안정적인 수익을 기대할 수 있습니다.' },
+            { name: '삼성화재', code: '000810', description: '손해보험 업계 선두주자로서 견고한 실적과 안정적인 배당을 제공하며, 중기적인 관점에서 시장 변동성에 강한 방어적 성격을 가집니다.' },
             { name: '현대해상', code: '001450', description: '안정적인 영업 기반과 꾸준한 시장 점유율을 바탕으로 중기적인 관점에서 우수한 배당 수익과 함께 주가 상승을 기대할 수 있습니다.' },
             { name: 'NH투자증권', code: '005940', description: '증권 업황의 회복과 적극적인 해외 사업 확대를 통해 중기적인 이익 성장과 배당 매력을 동시에 갖추고 있습니다.' },
             { name: '한국금융지주', code: '071050', description: '자회사 카카오뱅크의 성장과 증권 사업의 견조한 실적을 바탕으로 중기적인 기업 가치 성장이 기대됩니다.' },
@@ -116,8 +153,8 @@ const StockRecommendation: React.FC = () => {
             { name: 'KT', code: '030200', description: '통신 산업의 견고함과 함께 디지털 전환 및 B2B 사업 확대를 통해 장기적인 실적 개선과 배당 매력이 높은 종목입니다.' },
             { name: 'KB금융', code: '105560', description: '고배당 정책과 안정적인 이자 이익 기반의 실적 성장을 통해 장기적인 관점에서 안정적인 수익과 함께 기업 가치 상승을 기대할 수 있습니다.' },
             { name: '삼성물산', code: '028260', description: '상사, 건설, 바이오 등 다양한 사업 부문의 안정적인 수익 창출과 성장 잠재력을 통해 장기적인 가치 투자가 가능한 대표 종목입니다.' },
-            { name: 'POSCO홀딩스', code: '005490', description: '철강 사업의 견조함을 바탕으로 2차전지 소재, 수소 등 친환경 미래 소재 사업으로의 성공적인 전환을 통해 장기적인 기업 가치 성장이 기대됩니다.' },
-            { name: 'LG화학', code: '051910', description: '배터리 소재 및 친환경 신소재 사업의 꾸준한 성장을 통해 장기적인 관점에서 지속 가능한 기업으로의 변화를 추구합니다.' },
+            { name: 'POSCO홀딩스', code: '005490', description: '철강 사업의 안정적인 기반 위에 2차전지 소재, 수소 등 친환경 미래 소재 사업으로의 성공적인 전환을 추진하고 있어 장기적인 기업 가치 성장이 기대됩니다.' },
+            { name: 'LG화학', code: '051910', description: '배터리 소재 및 친환경 신소재 사업의 꾸준한 성장을 통해 장기적인 관점에서 지속 가능한 기업으로의 변화를 추구하고 있습니다.' },
             { name: 'SK이노베이션', code: '096770', description: '정유 사업의 안정성과 함께 배터리, 분리막 등 친환경 에너지 사업으로의 포트폴리오 전환을 통해 장기적인 성장이 기대됩니다.' },
             { name: '한국항공우주', code: '047810', description: '방산 수출 확대 및 위성, UAM 등 미래 항공우주 산업의 성장을 통해 장기적인 관점에서 안정적인 성장이 가능한 종목입니다.' },
           ];
@@ -167,7 +204,10 @@ const StockRecommendation: React.FC = () => {
           ];
         }
       }
-      setRecommendations(recommendedStocks);
+      setRecommendations(recommendedStocks.map(stock => ({
+        ...stock,
+        simulatedReturn: simulateReturn(investmentTendency, holdingPeriod) // Add simulated return
+      })));
     };
 
     fetchRecommendations();
@@ -182,6 +222,15 @@ const StockRecommendation: React.FC = () => {
       </div>
     );
   }
+
+  const getPeriodText = (period: string) => {
+    switch (period) {
+      case '일주일 이내': return '일주일';
+      case '3개월': return '3개월';
+      case '1년': return '1년';
+      default: return '';
+    }
+  };
 
   return (
     <div className="stock-recommendation-container">
@@ -198,6 +247,11 @@ const StockRecommendation: React.FC = () => {
               <div key={stock.code} className="stock-card">
                 <h3>{stock.name} ({stock.code})</h3>
                 <p>{stock.description}</p>
+                {stock.simulatedReturn && (
+                  <p className={`simulated-return ${stock.simulatedReturn.startsWith('+') ? 'positive' : 'negative'}`}>
+                    {getPeriodText(holdingPeriod)} 전에 구매했다면 현재 <br /> <strong>{stock.simulatedReturn}</strong>
+                  </p>
+                )}
                 <a href={`https://finance.naver.com/item/main.naver?code=${stock.code}`} target="_blank" rel="noopener noreferrer">
                   네이버 금융에서 자세히 보기
                 </a>
