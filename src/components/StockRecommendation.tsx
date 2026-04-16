@@ -11,44 +11,7 @@ interface Stock {
   name: string;
   code: string;
   description: string;
-  simulatedReturn?: string; // Add simulatedReturn property
 }
-
-// Function to simulate returns based on tendency and period
-const simulateReturn = (tendency: string, period: string): string => {
-  let min = 0;
-  let max = 0;
-
-  if (tendency === '공격성향') {
-    if (period === '일주일 이내') { // High volatility, short term
-      min = -15; max = 20; // High potential loss/gain
-    } else if (period === '3개월') { // Moderate volatility, mid term
-      min = -10; max = 30;
-    } else if (period === '1년') { // High growth potential, long term
-      min = -5; max = 50;
-    }
-  } else if (tendency === '중도') {
-    if (period === '일주일 이내') { // Moderate volatility, short term
-      min = -5; max = 10;
-    } else if (period === '3개월') { // Moderate growth, mid term
-      min = 0; max = 20;
-    } else if (period === '1년') { // Steady growth, long term
-      min = 5; max = 35;
-    }
-  } else if (tendency === '안정성향') {
-    if (period === '일주일 이내') { // Low volatility, short term
-      min = -2; max = 3;
-    } else if (period === '3개월') { // Stable growth, mid term
-      min = 0; max = 8;
-    } else if (period === '1년') { // Consistent, modest growth, long term
-      min = 5; max = 15;
-    }
-  }
-
-  const randomReturn = Math.random() * (max - min) + min;
-  return `${randomReturn > 0 ? '+' : ''}${randomReturn.toFixed(2)}%`;
-};
-
 
 const StockRecommendation: React.FC = () => {
   const location = useLocation();
@@ -204,10 +167,7 @@ const StockRecommendation: React.FC = () => {
           ];
         }
       }
-      setRecommendations(recommendedStocks.map(stock => ({
-        ...stock,
-        simulatedReturn: simulateReturn(investmentTendency, holdingPeriod) // Add simulated return
-      })));
+      setRecommendations(recommendedStocks);
     };
 
     fetchRecommendations();
@@ -223,21 +183,30 @@ const StockRecommendation: React.FC = () => {
     );
   }
 
-  const getPeriodText = (period: string) => {
-    switch (period) {
-      case '일주일 이내': return '일주일';
-      case '3개월': return '3개월';
-      case '1년': return '1년';
-      default: return '';
-    }
-  };
-
   return (
     <div className="stock-recommendation-container">
       <div className="summary-card">
         <p>선택하신 투자 성향: <strong>{investmentTendency}</strong></p>
         <p>선택하신 보유 기간: <strong>{holdingPeriod}</strong></p>
       </div>
+
+      <section className="investment-briefing">
+        <h2>오늘의 투자 정보 브리핑</h2>
+        <p>
+          최근 중동 지역의 지정학적 긴장(예: 이란-이스라엘 분쟁) 고조로 인해 글로벌 금융 시장의 불확실성이 커지고 있습니다.
+          이는 유가 변동성 확대 및 안전 자산 선호 심리 강화로 이어져 국내 증시에도 영향을 미 미치고 있습니다.
+        </p>
+        <p>
+          이러한 상황에서는 **에너지/방산 섹터**의 단기적인 강세가 예상될 수 있으나, 전반적인 시장의 변동성 확대에 유의해야 합니다.
+          반면, **필수 소비재나 통신과 같은 경기 방어적 섹터**는 상대적으로 안정적인 흐름을 보일 수 있습니다.
+        </p>
+        <h3>오늘의 투자 전략 추천:</h3>
+        <ul>
+          <li>**단기적 관점 (변동성 활용):** 지정학적 이슈에 민감하게 반응하는 에너지, 방산 관련 종목 중 기술적 분석을 통해 단기 트레이딩 기회를 모색.</li>
+          <li>**중장기적 관점 (안정성 추구):** 불확실성이 해소될 때까지는 현금 비중을 높이거나, 경기 방어적 성격이 강한 통신, 필수 소비재, 유틸리티 업종에서 안정적인 배당주 중심으로 포트폴리오를 구성하는 것을 고려.</li>
+          <li>**위험 관리:** 시장 변동성 확대 시 손실을 최소화하기 위해 손절매 원칙을 철저히 지키고, 분할 매수/매도 전략을 활용하여 리스크를 분산하는 것이 중요합니다.</li>
+        </ul>
+      </section>
 
       <section className="recommendation-list">
         <h2>투자자님을 위한 추천 종목 (한국 주식)</h2>
@@ -247,11 +216,6 @@ const StockRecommendation: React.FC = () => {
               <div key={stock.code} className="stock-card">
                 <h3>{stock.name} ({stock.code})</h3>
                 <p>{stock.description}</p>
-                {stock.simulatedReturn && (
-                  <p className={`simulated-return ${stock.simulatedReturn.startsWith('+') ? 'positive' : 'negative'}`}>
-                    {getPeriodText(holdingPeriod)} 전에 구매했다면 현재 <br /> <strong>{stock.simulatedReturn}</strong>
-                  </p>
-                )}
                 <a href={`https://finance.naver.com/item/main.naver?code=${stock.code}`} target="_blank" rel="noopener noreferrer">
                   네이버 금융에서 자세히 보기
                 </a>

@@ -10,7 +10,7 @@
   text-align: center;
 }
 
-.recommendation-header {
+.recommendation-header { /* This class is no longer used in JSX but kept for reference */
   font-size: 2.2em;
   font-weight: 700;
   color: var(--tooldi-dark-text);
@@ -45,6 +45,66 @@
 .summary-card strong {
   color: var(--tooldi-primary);
 }
+
+/* Investment Briefing Section */
+.investment-briefing {
+  background-color: #fdfdfd;
+  border: 1px solid var(--tooldi-border);
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 8px 25px rgba(var(--tooldi-primary-rgb), 0.08);
+  width: 100%;
+  max-width: 700px;
+  text-align: left;
+}
+
+.investment-briefing h2 {
+  font-size: 1.8em;
+  color: var(--tooldi-dark-text);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--tooldi-border);
+  padding-bottom: 0.8rem;
+  text-align: center;
+}
+
+.investment-briefing p {
+  font-size: 1.05em;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.investment-briefing h3 {
+  font-size: 1.4em;
+  color: var(--tooldi-primary);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.investment-briefing ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.investment-briefing li {
+  background-color: var(--tooldi-light-bg);
+  border: 1px solid var(--tooldi-border);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: var(--tooldi-dark-text);
+}
+
+.investment-briefing li strong {
+  color: var(--tooldi-primary);
+}
+
 
 .recommendation-list {
   width: 100%;
@@ -100,30 +160,6 @@
   flex-grow: 1; /* Allows description to take up available space */
 }
 
-/* Simulated Return Styling */
-.simulated-return {
-  font-size: 1.1em;
-  font-weight: 700;
-  margin-top: auto; /* Push to bottom */
-  padding-top: 1rem;
-  border-top: 1px dashed var(--tooldi-border);
-  text-align: center;
-  line-height: 1.4;
-}
-
-.simulated-return strong {
-  font-size: 1.2em; /* Make percentage stand out */
-}
-
-.simulated-return.positive {
-  color: #28a745; /* Green for positive */
-}
-
-.simulated-return.negative {
-  color: #dc3545; /* Red for negative */
-}
-
-
 .stock-card a {
   display: inline-block;
   background-color: var(--tooldi-secondary);
@@ -177,6 +213,16 @@
   .summary-card p {
     font-size: 1em;
   }
+  .investment-briefing {
+    padding: 1.8rem 2rem;
+  }
+  .investment-briefing h2 {
+    font-size: 1.5em;
+  }
+  .investment-briefing p,
+  .investment-briefing li {
+    font-size: 0.95em;
+  }
   .recommendation-list h2 {
     font-size: 1.5em;
   }
@@ -192,9 +238,6 @@
   .stock-card a {
     padding: 0.7rem 1rem;
     font-size: 0.9em;
-  }
-  .simulated-return {
-    font-size: 1em;
   }
 }
 
@@ -212,6 +255,17 @@
   .summary-card p {
     font-size: 0.9em;
   }
+  .investment-briefing {
+    padding: 1.5rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .investment-briefing h2 {
+    font-size: 1.3em;
+  }
+  .investment-briefing p,
+  .investment-briefing li {
+    font-size: 0.9em;
+  }
   .recommendation-list h2 {
     font-size: 1.3em;
   }
@@ -220,8 +274,5 @@
   }
   .stock-card h3 {
     font-size: 1.1em;
-  }
-  .simulated-return {
-    font-size: 0.9em;
   }
 }
