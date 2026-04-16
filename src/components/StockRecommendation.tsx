@@ -209,7 +209,7 @@ const StockRecommendation: React.FC = () => {
         )}
       </section>
 
-      <button onClick={() => navigate('/')} className="back-button">다시 설문조사하기</button>
+      <button onClick={() => navigate('/')} className="back-button">투자 성향 다시 입력하기</button>
     </div>
   );
 };
