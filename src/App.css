@@ -1,184 +1,187 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+/* src/App.css */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f7f6; /* Light background */
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align to top */
+  min-height: 100vh;
+  padding-top: 2rem;
+  box-sizing: border-box;
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+.App {
+  width: 100%;
+  max-width: 800px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem 3rem;
+  margin: 1.5rem;
+  box-sizing: border-box;
 }
 
-#center {
+.investment-survey-container h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2.5rem;
+  font-size: 2.2em;
+  font-weight: 700;
+}
+
+.survey-section {
+  background-color: #fcfcfc;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.8rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.survey-section h2 {
+  color: #34495e;
+  font-size: 1.5em;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 0.8rem;
+}
+
+.radio-group {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+  gap: 1.2rem;
 }
 
-#next-steps {
+.radio-group label {
   display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
+  align-items: center;
+  font-size: 1.1em;
+  color: #555;
+  cursor: pointer;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: 1px solid #dee2e6;
 }
 
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
+.radio-group label:hover {
+  background-color: #eef4f7;
+  color: #2c3e50;
+  border-color: #cddbe0;
 }
 
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
+.radio-group input[type="radio"] {
+  margin-right: 0.8rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #95a5a6;
+  border-radius: 50%;
+  outline: none;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
   position: relative;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.radio-group input[type="radio"]:checked {
+  border-color: #3498db;
+  background-color: #3498db;
+}
+
+.radio-group input[type="radio"]:checked::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+button[type="submit"] {
+  display: block;
   width: 100%;
+  padding: 1.2rem;
+  background-color: #2ecc71; /* Green submit button */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.3em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 2.5rem;
+  box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+button[type="submit"]:hover {
+  background-color: #27ae60;
+  transform: translateY(-2px);
+}
+
+button[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(46, 204, 113, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .App {
+    padding: 1.5rem 2rem;
+    margin: 1rem;
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
+  .investment-survey-container h1 {
+    font-size: 1.8em;
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+
+  .survey-section h2 {
+    font-size: 1.3em;
+  }
+
+  .radio-group label {
+    font-size: 1em;
+    padding: 0.6rem 0.8rem;
+  }
+
+  button[type="submit"] {
+    font-size: 1.1em;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .App {
+    padding: 1rem 1rem;
+    margin: 0.5rem;
+  }
+
+  .investment-survey-container h1 {
+    font-size: 1.5em;
+    margin-bottom: 2rem;
+  }
+
+  .survey-section {
+    padding: 1.2rem 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .survey-section h2 {
+    font-size: 1.1em;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .radio-group {
+    gap: 0.8rem;
   }
 }
