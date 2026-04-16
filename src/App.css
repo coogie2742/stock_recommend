@@ -1,9 +1,18 @@
 /* src/App.css */
+:root {
+  --primary-blue: #3498db;
+  --light-blue: #e8f5fd;
+  --dark-blue: #2c3e50;
+  --accent-green: #2ecc71;
+  --light-grey: #f4f7f6;
+  --medium-grey: #dee2e6;
+}
+
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f7f6; /* Light background */
+  background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-grey) 100%);
   color: #333;
   display: flex;
   justify-content: center;
@@ -17,88 +26,129 @@ body {
   width: 100%;
   max-width: 800px;
   background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  padding: 2.5rem 3rem;
+  border-radius: 16px; /* Slightly more rounded corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Stronger, more diffused shadow */
+  padding: 3rem 3.5rem; /* Increased padding */
   margin: 1.5rem;
   box-sizing: border-box;
+  overflow: hidden; /* For potential future background elements */
+  position: relative;
+}
+
+/* Subtle background pattern/texture */
+.App::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="pattern-zigzag" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0 10l10 10l10-10l-10-10z" fill="rgba(var(--primary-blue-rgb), 0.05)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23pattern-zigzag)"/></svg>');
+  background-size: 20px 20px;
+  opacity: 0.05; /* Very subtle */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.investment-survey-container {
+  position: relative; /* To be above ::before */
+  z-index: 1;
 }
 
 .investment-survey-container h1 {
   text-align: center;
-  color: #2c3e50;
-  margin-bottom: 2.5rem;
-  font-size: 2.2em;
-  font-weight: 700;
+  color: var(--dark-blue);
+  margin-bottom: 3rem; /* Increased margin */
+  font-size: 2.5em; /* Larger heading */
+  font-weight: 800; /* Bolder */
+  position: relative;
+  padding-bottom: 0.5rem;
 }
 
+.investment-survey-container h1::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary-blue);
+  border-radius: 2px;
+}
+
+
 .survey-section {
-  background-color: #fcfcfc;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 1.8rem 2rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  background-color: #fdfdfd;
+  border: 1px solid var(--light-blue); /* Blue-themed border */
+  border-radius: 10px;
+  padding: 2rem 2.2rem;
+  margin-bottom: 2.5rem; /* Increased margin */
+  box-shadow: 0 6px 15px rgba(var(--primary-blue-rgb), 0.08); /* Blue-themed shadow */
 }
 
 .survey-section h2 {
-  color: #34495e;
-  font-size: 1.5em;
+  color: var(--dark-blue);
+  font-size: 1.6em;
   margin-top: 0;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid #e9ecef;
-  padding-bottom: 0.8rem;
+  margin-bottom: 1.8rem;
+  border-bottom: 2px solid var(--light-blue); /* Blue-themed separator */
+  padding-bottom: 1rem;
+  font-weight: 700;
 }
 
 .radio-group {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.5rem; /* Increased gap */
 }
 
 .radio-group label {
   display: flex;
   align-items: center;
-  font-size: 1.1em;
-  color: #555;
+  font-size: 1.15em; /* Slightly larger font */
+  color: var(--dark-blue);
   cursor: pointer;
-  padding: 0.8rem 1rem;
-  border-radius: 6px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border: 1px solid #dee2e6;
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 1px solid var(--medium-grey);
+  background-color: #f9fbfd;
 }
 
 .radio-group label:hover {
-  background-color: #eef4f7;
-  color: #2c3e50;
-  border-color: #cddbe0;
+  background-color: var(--light-blue);
+  color: var(--primary-blue);
+  border-color: var(--primary-blue);
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 4px 10px rgba(var(--primary-blue-rgb), 0.1);
 }
 
 .radio-group input[type="radio"] {
-  margin-right: 0.8rem;
+  margin-right: 1rem; /* Increased margin */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 22px; /* Slightly larger radio */
+  height: 22px;
   border: 2px solid #95a5a6;
   border-radius: 50%;
   outline: none;
   transition: border-color 0.3s ease, background-color 0.3s ease;
   position: relative;
-  flex-shrink: 0; /* Prevent shrinking */
+  flex-shrink: 0;
 }
 
 .radio-group input[type="radio"]:checked {
-  border-color: #3498db;
-  background-color: #3498db;
+  border-color: var(--primary-blue);
+  background-color: var(--primary-blue);
 }
 
 .radio-group input[type="radio"]:checked::before {
   content: '';
   display: block;
-  width: 10px;
-  height: 10px;
+  width: 12px; /* Larger inner circle */
+  height: 12px;
   background-color: #ffffff;
   border-radius: 50%;
   position: absolute;
@@ -110,78 +160,100 @@ body {
 button[type="submit"] {
   display: block;
   width: 100%;
-  padding: 1.2rem;
-  background-color: #2ecc71; /* Green submit button */
+  padding: 1.4rem; /* Larger button */
+  background-color: var(--primary-blue); /* Blue submit button */
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 1.3em;
-  font-weight: 600;
+  border-radius: 10px; /* Slightly more rounded */
+  font-size: 1.4em; /* Larger font */
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-top: 2.5rem;
-  box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  margin-top: 3rem; /* Increased margin */
+  box-shadow: 0 6px 20px rgba(var(--primary-blue-rgb), 0.3); /* Blue-themed shadow */
 }
 
 button[type="submit"]:hover {
-  background-color: #27ae60;
-  transform: translateY(-2px);
+  background-color: #2980b9; /* Darker blue on hover */
+  transform: translateY(-3px); /* More pronounced lift */
+  box-shadow: 0 8px 25px rgba(var(--primary-blue-rgb), 0.4);
 }
 
 button[type="submit"]:active {
   transform: translateY(0);
-  box-shadow: 0 2px 10px rgba(46, 204, 113, 0.3);
+  box-shadow: 0 4px 15px rgba(var(--primary-blue-rgb), 0.3);
 }
+
+/* Helper for RGBA conversion for shadows */
+.App {
+  --primary-blue-rgb: 52, 152, 219; /* RGB values for #3498db */
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .App {
-    padding: 1.5rem 2rem;
+    padding: 2rem 2.5rem;
     margin: 1rem;
   }
 
   .investment-survey-container h1 {
-    font-size: 1.8em;
+    font-size: 2em;
+    margin-bottom: 2rem;
   }
 
   .survey-section h2 {
-    font-size: 1.3em;
+    font-size: 1.4em;
+    margin-bottom: 1.5rem;
   }
 
   .radio-group label {
-    font-size: 1em;
-    padding: 0.6rem 0.8rem;
+    font-size: 1.05em;
+    padding: 0.8rem 1rem;
   }
 
   button[type="submit"] {
-    font-size: 1.1em;
-    padding: 1rem;
+    font-size: 1.2em;
+    padding: 1.2rem;
   }
 }
 
 @media (max-width: 480px) {
   .App {
-    padding: 1rem 1rem;
+    padding: 1.5rem 1.5rem;
     margin: 0.5rem;
+    border-radius: 12px;
   }
 
   .investment-survey-container h1 {
-    font-size: 1.5em;
-    margin-bottom: 2rem;
-  }
-
-  .survey-section {
-    padding: 1.2rem 1.2rem;
+    font-size: 1.8em;
     margin-bottom: 1.5rem;
   }
 
+  .survey-section {
+    padding: 1.5rem 1.5rem;
+    margin-bottom: 1.8rem;
+    border-radius: 8px;
+  }
+
   .survey-section h2 {
-    font-size: 1.1em;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
+    font-size: 1.2em;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
   }
 
   .radio-group {
-    gap: 0.8rem;
+    gap: 1rem;
+  }
+
+  .radio-group label {
+    font-size: 1em;
+    padding: 0.7rem 0.9rem;
+  }
+
+  button[type="submit"] {
+    font-size: 1.1em;
+    padding: 1rem;
+    border-radius: 8px;
   }
 }

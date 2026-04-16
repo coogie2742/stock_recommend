@@ -35,6 +35,16 @@ const InvestmentSurvey: React.FC = () => {
               <input
                 type="radio"
                 name="tendency"
+                value="중도"
+                checked={investmentTendency === '중도'}
+                onChange={(e) => setInvestmentTendency(e.target.value)}
+              />
+              중도
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="tendency"
                 value="안정성향"
                 checked={investmentTendency === '안정성향'}
                 onChange={(e) => setInvestmentTendency(e.target.value)}
