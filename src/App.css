@@ -1,41 +1,56 @@
 /* src/App.css */
 :root {
-  --primary-blue: #3498db;
+  --primary-blue: #3498db; /* Default primary blue */
   --light-blue: #e8f5fd;
   --dark-blue: #2c3e50;
   --accent-green: #2ecc71;
   --light-grey: #f4f7f6;
   --medium-grey: #dee2e6;
+
+  /* ToolDi template inspired blues */
+  --tooldi-primary: #3460f1; /* A more vibrant blue from the reference */
+  --tooldi-secondary: #5a7ef6;
+  --tooldi-light-bg: #f0f3fa; /* Lighter background often seen in modern UIs */
+  --tooldi-dark-text: #2a3447;
+  --tooldi-border: #e0e5eb;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensure full height for background */
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-grey) 100%);
-  color: #333;
+  font-family: 'NanumSquareRound', sans-serif; /* Apply Nanum Square Round font */
+  background: linear-gradient(135deg, var(--tooldi-light-bg) 0%, var(--light-grey) 100%); /* Lighter, cleaner gradient */
+  color: var(--tooldi-dark-text);
   display: flex;
   justify-content: center;
   align-items: flex-start; /* Align to top */
   min-height: 100vh;
   padding-top: 2rem;
   box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal scroll for potential overflow */
 }
 
 .App {
   width: 100%;
   max-width: 800px;
   background-color: #ffffff;
-  border-radius: 16px; /* Slightly more rounded corners */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Stronger, more diffused shadow */
-  padding: 3rem 3.5rem; /* Increased padding */
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15); /* Stronger, more diffused shadow for a lifted look */
+  padding: 3.5rem 4rem; /* Increased padding */
   margin: 1.5rem;
   box-sizing: border-box;
-  overflow: hidden; /* For potential future background elements */
   position: relative;
+  overflow: hidden; /* For potential future background elements */
+  display: flex; /* Use flexbox for centering content within App */
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
 }
 
-/* Subtle background pattern/texture */
+/* Subtle background pattern/texture (adjusting color to new palette) */
 .App::before {
   content: '';
   position: absolute;
@@ -43,95 +58,94 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="pattern-zigzag" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0 10l10 10l10-10l-10-10z" fill="rgba(var(--primary-blue-rgb), 0.05)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23pattern-zigzag)"/></svg>');
+  background: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="pattern-zigzag" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0 10l10 10l10-10l-10-10z" fill="rgba(52, 96, 241, 0.05)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23pattern-zigzag)"/></svg>'); /* Using tooldi-primary RGB */
   background-size: 20px 20px;
-  opacity: 0.05; /* Very subtle */
+  opacity: 0.07; /* Slightly more visible */
   pointer-events: none;
   z-index: 0;
 }
 
 .investment-survey-container {
-  position: relative; /* To be above ::before */
+  position: relative;
   z-index: 1;
+  width: 100%; /* Ensure container takes full width of App */
+  text-align: center; /* Center align text content within container */
 }
 
 .investment-survey-container h1 {
-  text-align: center;
-  color: var(--dark-blue);
-  margin-bottom: 3rem; /* Increased margin */
-  font-size: 2.5em; /* Larger heading */
-  font-weight: 800; /* Bolder */
+  color: var(--tooldi-dark-text);
+  margin-bottom: 3rem;
+  font-size: 2.5em;
+  font-weight: 800;
   position: relative;
   padding-bottom: 0.5rem;
-}
-
-.investment-survey-container h1::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 4px;
-  background-color: var(--primary-blue);
-  border-radius: 2px;
+  /* Blue underline removed: Removed the ::after pseudo-element */
 }
 
 
 .survey-section {
-  background-color: #fdfdfd;
-  border: 1px solid var(--light-blue); /* Blue-themed border */
-  border-radius: 10px;
-  padding: 2rem 2.2rem;
-  margin-bottom: 2.5rem; /* Increased margin */
-  box-shadow: 0 6px 15px rgba(var(--primary-blue-rgb), 0.08); /* Blue-themed shadow */
+  background-color: #fcfdfe; /* Very light, almost white background */
+  border: 1px solid var(--tooldi-border); /* New border color */
+  border-radius: 12px; /* Slightly more rounded */
+  padding: 2rem 2.5rem; /* Increased padding */
+  margin-bottom: 2.5rem;
+  box-shadow: 0 8px 25px rgba(var(--tooldi-primary-rgb), 0.08); /* Blue-themed shadow */
+  width: 100%; /* Ensure sections take full width */
+  box-sizing: border-box;
+  text-align: left; /* Keep internal text aligned left for readability */
 }
 
 .survey-section h2 {
-  color: var(--dark-blue);
+  color: var(--tooldi-dark-text);
   font-size: 1.6em;
   margin-top: 0;
   margin-bottom: 1.8rem;
-  border-bottom: 2px solid var(--light-blue); /* Blue-themed separator */
+  border-bottom: 2px solid var(--tooldi-border); /* New border color */
   padding-bottom: 1rem;
   font-weight: 700;
+  text-align: center; /* Center align section titles */
 }
 
 .radio-group {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* Increased gap */
+  gap: 1.5rem;
+  align-items: center; /* Center radio buttons within the group */
+  width: 100%;
 }
 
 .radio-group label {
   display: flex;
   align-items: center;
-  font-size: 1.15em; /* Slightly larger font */
-  color: var(--dark-blue);
+  justify-content: flex-start; /* Align radio button and text to start */
+  font-size: 1.15em;
+  color: var(--tooldi-dark-text);
   cursor: pointer;
   padding: 1rem 1.2rem;
   border-radius: 8px;
   transition: all 0.3s ease;
-  border: 1px solid var(--medium-grey);
-  background-color: #f9fbfd;
+  border: 1px solid var(--tooldi-border);
+  background-color: #ffffff; /* White background for labels */
+  width: 80%; /* Constrain width for better centering appearance */
+  max-width: 400px; /* Max width for labels */
 }
 
 .radio-group label:hover {
-  background-color: var(--light-blue);
-  color: var(--primary-blue);
-  border-color: var(--primary-blue);
-  transform: translateY(-2px); /* Slight lift on hover */
-  box-shadow: 0 4px 10px rgba(var(--primary-blue-rgb), 0.1);
+  background-color: var(--tooldi-light-bg); /* Lighter blue on hover */
+  color: var(--tooldi-primary);
+  border-color: var(--tooldi-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(var(--tooldi-primary-rgb), 0.15);
 }
 
 .radio-group input[type="radio"] {
-  margin-right: 1rem; /* Increased margin */
+  margin-right: 1rem;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 22px; /* Slightly larger radio */
+  width: 22px;
   height: 22px;
-  border: 2px solid #95a5a6;
+  border: 2px solid var(--tooldi-primary); /* Use primary blue for radio border */
   border-radius: 50%;
   outline: none;
   transition: border-color 0.3s ease, background-color 0.3s ease;
@@ -140,14 +154,14 @@ body {
 }
 
 .radio-group input[type="radio"]:checked {
-  border-color: var(--primary-blue);
-  background-color: var(--primary-blue);
+  border-color: var(--tooldi-primary);
+  background-color: var(--tooldi-primary);
 }
 
 .radio-group input[type="radio"]:checked::before {
   content: '';
   display: block;
-  width: 12px; /* Larger inner circle */
+  width: 12px;
   height: 12px;
   background-color: #ffffff;
   border-radius: 50%;
@@ -160,33 +174,36 @@ body {
 button[type="submit"] {
   display: block;
   width: 100%;
-  padding: 1.4rem; /* Larger button */
-  background-color: var(--primary-blue); /* Blue submit button */
+  max-width: 400px; /* Max width for submit button */
+  margin-left: auto; /* Center button */
+  margin-right: auto; /* Center button */
+  padding: 1.4rem;
+  background-color: var(--tooldi-primary); /* New primary blue for button */
   color: white;
   border: none;
-  border-radius: 10px; /* Slightly more rounded */
-  font-size: 1.4em; /* Larger font */
+  border-radius: 12px; /* More rounded */
+  font-size: 1.4em;
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  margin-top: 3rem; /* Increased margin */
-  box-shadow: 0 6px 20px rgba(var(--primary-blue-rgb), 0.3); /* Blue-themed shadow */
+  margin-top: 3.5rem; /* Increased margin */
+  box-shadow: 0 10px 30px rgba(var(--tooldi-primary-rgb), 0.3);
 }
 
 button[type="submit"]:hover {
-  background-color: #2980b9; /* Darker blue on hover */
-  transform: translateY(-3px); /* More pronounced lift */
-  box-shadow: 0 8px 25px rgba(var(--primary-blue-rgb), 0.4);
+  background-color: var(--tooldi-secondary); /* Lighter blue on hover */
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(var(--tooldi-primary-rgb), 0.4);
 }
 
 button[type="submit"]:active {
   transform: translateY(0);
-  box-shadow: 0 4px 15px rgba(var(--primary-blue-rgb), 0.3);
+  box-shadow: 0 6px 20px rgba(var(--tooldi-primary-rgb), 0.3);
 }
 
 /* Helper for RGBA conversion for shadows */
 .App {
-  --primary-blue-rgb: 52, 152, 219; /* RGB values for #3498db */
+  --tooldi-primary-rgb: 52, 96, 241; /* RGB values for #3460f1 */
 }
 
 
@@ -198,23 +215,29 @@ button[type="submit"]:active {
   }
 
   .investment-survey-container h1 {
-    font-size: 2em;
+    font-size: 2.2em;
     margin-bottom: 2rem;
   }
 
+  .survey-section {
+    padding: 1.8rem 2rem;
+  }
+
   .survey-section h2 {
-    font-size: 1.4em;
+    font-size: 1.5em;
     margin-bottom: 1.5rem;
   }
 
   .radio-group label {
-    font-size: 1.05em;
-    padding: 0.8rem 1rem;
+    font-size: 1.1em;
+    padding: 0.9rem 1.1rem;
+    width: 90%;
   }
 
   button[type="submit"] {
-    font-size: 1.2em;
-    padding: 1.2rem;
+    font-size: 1.3em;
+    padding: 1.3rem;
+    max-width: 90%;
   }
 }
 
@@ -233,11 +256,11 @@ button[type="submit"]:active {
   .survey-section {
     padding: 1.5rem 1.5rem;
     margin-bottom: 1.8rem;
-    border-radius: 8px;
+    border-radius: 10px;
   }
 
   .survey-section h2 {
-    font-size: 1.2em;
+    font-size: 1.3em;
     margin-bottom: 1.2rem;
     padding-bottom: 0.8rem;
   }
@@ -248,12 +271,14 @@ button[type="submit"]:active {
 
   .radio-group label {
     font-size: 1em;
-    padding: 0.7rem 0.9rem;
+    padding: 0.8rem 1rem;
+    width: 95%;
   }
 
   button[type="submit"] {
-    font-size: 1.1em;
-    padding: 1rem;
-    border-radius: 8px;
+    font-size: 1.2em;
+    padding: 1.1rem;
+    border-radius: 10px;
+    max-width: 95%;
   }
 }
