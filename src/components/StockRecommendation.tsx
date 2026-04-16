@@ -209,7 +209,7 @@ const StockRecommendation: React.FC = () => {
       </section>
 
       <section className="recommendation-list">
-        <h2>투자자님을 위한 추천 종목 (한국 주식)</h2>
+        <h2>투자자님을 위한 추천 종목</h2>
         {recommendations.length > 0 ? (
           <div className="stock-cards-grid">
             {recommendations.map((stock) => (
