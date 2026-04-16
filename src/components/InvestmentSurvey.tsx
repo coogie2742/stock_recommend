@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const InvestmentSurvey: React.FC = () => {
   const [investmentTendency, setInvestmentTendency] = useState<string | null>(null);
   const [holdingPeriod, setHoldingPeriod] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (investmentTendency && holdingPeriod) {
-      alert(`선택된 투자 성향: ${investmentTendency}, 선택된 보유 기간: ${holdingPeriod}`);
-      // 여기에 선택된 값들을 기반으로 주식 추천 로직을 추가할 수 있습니다.
+      navigate('/recommendation', { state: { investmentTendency, holdingPeriod } });
     } else {
       alert('모든 질문에 답변해주세요.');
     }
@@ -61,36 +62,36 @@ const InvestmentSurvey: React.FC = () => {
               <input
                 type="radio"
                 name="period"
-                value="단타"
-                checked={holdingPeriod === '단타'}
+                value="일주일 이내"
+                checked={holdingPeriod === '일주일 이내'}
                 onChange={(e) => setHoldingPeriod(e.target.value)}
               />
-              단타 (단기 투자)
+              일주일 이내 (단기 투자 성향)
             </label>
             <label>
               <input
                 type="radio"
                 name="period"
-                value="중타"
-                checked={holdingPeriod === '중타'}
+                value="3개월"
+                checked={holdingPeriod === '3개월'}
                 onChange={(e) => setHoldingPeriod(e.target.value)}
               />
-              중타 (중기 투자)
+              3개월 (중기 투자 성향)
             </label>
             <label>
               <input
                 type="radio"
                 name="period"
-                value="장타"
-                checked={holdingPeriod === '장타'}
+                value="1년"
+                checked={holdingPeriod === '1년'}
                 onChange={(e) => setHoldingPeriod(e.target.value)}
               />
-              장타 (장기 투자)
+              1년 (장기 투자 성향)
             </label>
           </div>
         </section>
 
-        <button type="submit">결과 확인</button>
+        <button type="submit">제출하기</button>
       </form>
     </div>
   );

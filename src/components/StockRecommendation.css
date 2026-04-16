@@ -1,0 +1,196 @@
+/* src/components/StockRecommendation.css */
+
+.stock-recommendation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.recommendation-header {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: var(--tooldi-dark-text);
+  margin-bottom: 2rem;
+  line-height: 1.3;
+}
+
+.tendency-display,
+.period-display {
+  color: var(--tooldi-primary);
+  font-weight: 800;
+}
+
+.summary-card {
+  background-color: var(--tooldi-light-bg);
+  border: 1px solid var(--tooldi-border);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 6px 20px rgba(var(--tooldi-primary-rgb), 0.05);
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+}
+
+.summary-card p {
+  margin: 0.5rem 0;
+  font-size: 1.1em;
+  color: var(--tooldi-dark-text);
+}
+
+.summary-card strong {
+  color: var(--tooldi-primary);
+}
+
+.recommendation-list {
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 3rem;
+}
+
+.recommendation-list h2 {
+  font-size: 1.8em;
+  color: var(--tooldi-dark-text);
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--tooldi-border);
+  padding-bottom: 0.8rem;
+  text-align: center;
+}
+
+.stock-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.stock-card {
+  background-color: #ffffff;
+  border: 1px solid var(--tooldi-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(var(--tooldi-primary-rgb), 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stock-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(var(--tooldi-primary-rgb), 0.12);
+}
+
+.stock-card h3 {
+  font-size: 1.4em;
+  color: var(--tooldi-primary);
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+}
+
+.stock-card p {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 1.2rem;
+  flex-grow: 1; /* Allows description to take up available space */
+}
+
+.stock-card a {
+  display: inline-block;
+  background-color: var(--tooldi-secondary);
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95em;
+  transition: background-color 0.2s ease;
+  align-self: flex-start; /* Align link to the start of the card */
+}
+
+.stock-card a:hover {
+  background-color: var(--tooldi-primary);
+}
+
+.no-recommendations {
+  font-size: 1.1em;
+  color: #777;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.back-button {
+  background-color: #6c757d; /* A neutral gray for back button */
+  color: white;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 2rem;
+}
+
+.back-button:hover {
+  background-color: #5a6268;
+}
+
+/* Responsive adjustments for StockRecommendation page */
+@media (max-width: 768px) {
+  .recommendation-header {
+    font-size: 1.8em;
+  }
+  .summary-card {
+    padding: 1.2rem 1.5rem;
+  }
+  .summary-card p {
+    font-size: 1em;
+  }
+  .recommendation-list h2 {
+    font-size: 1.5em;
+  }
+  .stock-cards-grid {
+    grid-template-columns: 1fr; /* Stack cards on smaller screens */
+  }
+  .stock-card h3 {
+    font-size: 1.2em;
+  }
+  .stock-card p {
+    font-size: 0.95em;
+  }
+  .stock-card a {
+    padding: 0.7rem 1rem;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .stock-recommendation-container {
+    padding: 1rem;
+  }
+  .recommendation-header {
+    font-size: 1.5em;
+  }
+  .summary-card {
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
+  .summary-card p {
+    font-size: 0.9em;
+  }
+  .recommendation-list h2 {
+    font-size: 1.3em;
+  }
+  .stock-card {
+    padding: 1.2rem;
+  }
+  .stock-card h3 {
+    font-size: 1.1em;
+  }
+}
